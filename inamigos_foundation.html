@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>InAmigos Foundation – Uniting Minds For Change</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --red: #e01010;
+    --red-dark: #a80000;
+    --red-light: #ff3333;
+    --white: #ffffff;
+    --off-white: #fdf8f5;
+    --cream: #f5ede3;
+    --black: #111010;
+    --gray: #6b6b6b;
+    --light-gray: #f0ebe6;
+    --gold: #e8a838;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--off-white);
+    color: var(--black);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; width: 100%; z-index: 999;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 2px solid var(--red);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%;
+    height: 64px;
+    box-shadow: 0 2px 20px rgba(224,16,16,0.12);
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; font-weight: 900;
+    color: var(--red);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--black); font-size: 0.7rem; display: block; font-family: 'DM Sans', sans-serif; font-weight: 400; letter-spacing: 2px; text-transform: uppercase; }
+  .logo-icon {
+    width: 40px; height: 40px;
+    background: var(--red);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-weight: 900; font-size: 0.9rem;
+    flex-shrink: 0;
+  }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a {
+    text-decoration: none; color: var(--black);
+    font-size: 0.88rem; font-weight: 500; letter-spacing: 0.5px;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--red); }
+  .nav-cta {
+    background: var(--red); color: white;
+    padding: 9px 22px; border-radius: 4px;
+    font-size: 0.85rem; font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .nav-cta:hover { background: var(--red-dark); transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0d0d0d 0%, #1a0000 50%, #2d0202 100%);
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: flex-start;
+    padding: 100px 8% 80px;
+    position: relative; overflow: hidden;
+  }
+  #hero::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(224,16,16,0.25) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .hero-tag {
+    background: var(--red); color: white;
+    font-size: 0.75rem; letter-spacing: 3px;
+    text-transform: uppercase; font-weight: 600;
+    padding: 6px 16px; border-radius: 2px;
+    display: inline-block; margin-bottom: 24px;
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 7vw, 6.5rem);
+    font-weight: 900; color: white;
+    line-height: 1.05;
+    animation: fadeUp 0.9s 0.1s ease both;
+  }
+  .hero-title .accent { color: var(--red); }
+  .hero-tagline {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(1.2rem, 2.5vw, 2rem);
+    color: rgba(255,255,255,0.75);
+    margin-top: 12px;
+    animation: fadeUp 0.9s 0.2s ease both;
+  }
+  .hero-desc {
+    max-width: 540px;
+    color: rgba(255,255,255,0.65);
+    font-size: 1rem; line-height: 1.7;
+    margin-top: 24px;
+    animation: fadeUp 0.9s 0.3s ease both;
+  }
+  .hero-btns {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    margin-top: 40px;
+    animation: fadeUp 0.9s 0.4s ease both;
+  }
+  .btn-primary {
+    background: var(--red); color: white;
+    padding: 14px 36px; border-radius: 4px;
+    font-size: 0.95rem; font-weight: 600;
+    text-decoration: none;
+    transition: all 0.25s;
+    box-shadow: 0 4px 20px rgba(224,16,16,0.4);
+  }
+  .btn-primary:hover { background: var(--red-light); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(224,16,16,0.5); }
+  .btn-outline {
+    border: 2px solid rgba(255,255,255,0.4); color: white;
+    padding: 14px 36px; border-radius: 4px;
+    font-size: 0.95rem; font-weight: 600;
+    text-decoration: none;
+    transition: all 0.25s;
+  }
+  .btn-outline:hover { border-color: white; background: rgba(255,255,255,0.08); }
+  .hero-stats {
+    display: flex; gap: 48px; flex-wrap: wrap;
+    margin-top: 60px; padding-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    animation: fadeUp 0.9s 0.5s ease both;
+  }
+  .stat-item { text-align: left; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem; font-weight: 900;
+    color: var(--red); line-height: 1;
+  }
+  .stat-label { color: rgba(255,255,255,0.5); font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase; margin-top: 4px; }
+
+  .hero-deco {
+    position: absolute; right: 8%; top: 50%; transform: translateY(-50%);
+    width: clamp(280px, 35vw, 480px); height: clamp(280px, 35vw, 480px);
+    border-radius: 50%;
+    border: 2px solid rgba(224,16,16,0.3);
+    display: flex; align-items: center; justify-content: center;
+    animation: fadeUp 1s 0.3s ease both;
+  }
+  .hero-deco::before {
+    content: '';
+    position: absolute;
+    width: 80%; height: 80%;
+    border-radius: 50%;
+    border: 1px solid rgba(224,16,16,0.2);
+  }
+  .hero-deco-inner {
+    width: 65%; height: 65%;
+    background: radial-gradient(circle, rgba(224,16,16,0.3), rgba(100,0,0,0.6));
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1rem, 2vw, 1.4rem);
+    font-weight: 900; color: white;
+    text-align: center; padding: 20px;
+    line-height: 1.3;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SECTION COMMONS ── */
+  section { padding: 90px 8%; }
+  .section-tag {
+    display: inline-block;
+    background: var(--cream); color: var(--red);
+    font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase; font-weight: 700;
+    padding: 5px 14px; border-radius: 2px; margin-bottom: 16px;
+    border-left: 3px solid var(--red);
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 900; line-height: 1.15;
+    margin-bottom: 12px;
+  }
+  .section-title .red { color: var(--red); }
+  .section-sub { color: var(--gray); font-size: 1rem; line-height: 1.7; max-width: 620px; }
+
+  /* ── ABOUT ── */
+  #about { background: var(--white); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-top: 48px; }
+  .about-text p { color: var(--gray); line-height: 1.8; margin-bottom: 16px; }
+  .about-text p strong { color: var(--red); }
+  .about-badges { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+  .badge {
+    background: var(--light-gray); color: var(--black);
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.5px;
+    padding: 7px 14px; border-radius: 20px;
+    border: 1px solid #ddd;
+  }
+  .badge.red { background: var(--red); color: white; border-color: var(--red); }
+  .about-visual {
+    background: linear-gradient(135deg, var(--red-dark), #1a0000);
+    border-radius: 12px;
+    padding: 48px 36px;
+    color: white;
+    position: relative; overflow: hidden;
+  }
+  .about-visual::before {
+    content: '';
+    position: absolute; top: -40px; right: -40px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .about-visual h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; margin-bottom: 24px; font-weight: 900;
+  }
+  .trust-list { list-style: none; }
+  .trust-list li {
+    padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.12);
+    font-size: 0.9rem; display: flex; gap: 10px; align-items: flex-start;
+    line-height: 1.5;
+  }
+  .trust-list li:last-child { border-bottom: none; }
+  .trust-list li::before { content: '✓'; color: var(--gold); font-weight: 900; flex-shrink: 0; margin-top: 2px; }
+
+  /* ── PROJECTS ── */
+  #projects { background: var(--off-white); }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px; margin-top: 48px;
+  }
+  .project-card {
+    background: white; border-radius: 10px;
+    padding: 32px 28px;
+    border: 1px solid #e8e0d8;
+    transition: all 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .project-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; width: 4px; height: 100%;
+    background: var(--red);
+    transform: scaleY(0); transform-origin: bottom;
+    transition: transform 0.3s;
+  }
+  .project-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+  .project-card:hover::before { transform: scaleY(1); }
+  .project-icon {
+    width: 56px; height: 56px; background: var(--cream);
+    border-radius: 10px; display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem; margin-bottom: 20px;
+  }
+  .project-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; font-weight: 700; margin-bottom: 8px;
+  }
+  .project-stat {
+    color: var(--red); font-size: 0.85rem; font-weight: 700;
+    letter-spacing: 0.5px; margin-bottom: 12px;
+  }
+  .project-desc { color: var(--gray); font-size: 0.88rem; line-height: 1.65; }
+
+  /* ── IMPACT ── */
+  #impact {
+    background: linear-gradient(135deg, var(--black) 0%, #1a0000 100%);
+    color: white;
+    text-align: center;
+  }
+  #impact .section-title { color: white; }
+  #impact .section-sub { color: rgba(255,255,255,0.6); margin: 0 auto 56px; }
+  .impact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2px; margin-top: 48px;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px; overflow: hidden;
+  }
+  .impact-item {
+    padding: 48px 24px;
+    background: rgba(255,255,255,0.03);
+    border-right: 1px solid rgba(255,255,255,0.07);
+    transition: background 0.3s;
+  }
+  .impact-item:last-child { border-right: none; }
+  .impact-item:hover { background: rgba(224,16,16,0.12); }
+  .impact-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem; font-weight: 900; color: var(--red);
+    line-height: 1;
+  }
+  .impact-label { color: rgba(255,255,255,0.55); font-size: 0.82rem; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 10px; }
+
+  /* ── COVID ── */
+  #covid { background: var(--white); }
+  .covid-intro { color: var(--gray); line-height: 1.8; max-width: 680px; margin-bottom: 40px; }
+  .covid-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+  }
+  .covid-item {
+    background: var(--red);
+    color: white;
+    padding: 20px 24px;
+    border-radius: 8px;
+    font-size: 0.92rem;
+    line-height: 1.5;
+    display: flex; gap: 14px; align-items: flex-start;
+    transition: transform 0.2s, background 0.2s;
+  }
+  .covid-item:hover { background: var(--red-dark); transform: scale(1.02); }
+  .covid-item .arrow { font-size: 1.1rem; flex-shrink: 0; margin-top: 2px; }
+
+  /* ── FUNDS ── */
+  #funds { background: var(--off-white); }
+  .funds-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px; margin-top: 48px;
+  }
+  .fund-card {
+    background: white; border-radius: 10px; padding: 28px 24px;
+    border: 1px solid #e8e0d8;
+  }
+  .fund-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; margin-bottom: 12px;
+    color: var(--red); display: flex; gap: 10px; align-items: center;
+  }
+  .fund-card p { color: var(--gray); font-size: 0.88rem; line-height: 1.7; }
+
+  /* ── INTERNSHIPS ── */
+  #internships { background: var(--cream); }
+  .intern-header { max-width: 680px; margin-bottom: 48px; }
+  .roles-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 14px;
+  }
+  .role-tag {
+    background: var(--red); color: white;
+    padding: 16px 20px; border-radius: 8px;
+    font-size: 0.88rem; font-weight: 600;
+    text-align: center;
+    transition: all 0.25s;
+    cursor: default;
+  }
+  .role-tag:hover { background: var(--red-dark); transform: translateY(-3px); box-shadow: 0 8px 20px rgba(224,16,16,0.3); }
+  .cert-section { margin-top: 56px; }
+  .cert-section h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem; font-weight: 900; margin-bottom: 28px;
+  }
+  .cert-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+  }
+  .cert-item {
+    background: white; border-radius: 8px; padding: 20px 22px;
+    border-left: 4px solid var(--red);
+    font-size: 0.88rem; color: var(--gray); line-height: 1.6;
+  }
+  .cert-item strong { color: var(--black); display: block; margin-bottom: 4px; }
+
+  /* ── TEAM ── */
+  #team { background: var(--white); }
+  .team-title-script {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem; color: var(--red); margin-bottom: 40px;
+  }
+  .team-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 28px; margin-top: 16px;
+  }
+  .team-card {
+    text-align: center;
+    transition: transform 0.3s;
+  }
+  .team-card:hover { transform: translateY(-6px); }
+  .team-avatar {
+    width: 100px; height: 100px;
+    background: linear-gradient(135deg, var(--red), var(--red-dark));
+    border-radius: 50%; margin: 0 auto 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem; color: white;
+    font-family: 'Playfair Display', serif; font-weight: 900;
+    box-shadow: 0 6px 20px rgba(224,16,16,0.3);
+  }
+  .team-name { font-weight: 700; font-size: 0.95rem; margin-bottom: 4px; }
+  .team-role { color: var(--red); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.3px; }
+
+  /* ── SOCIAL ── */
+  #social { background: var(--off-white); }
+  .social-grid {
+    display: flex; flex-wrap: wrap; gap: 16px; margin-top: 40px;
+  }
+  .social-link {
+    display: flex; align-items: center; gap: 12px;
+    background: white; border: 1px solid #e8e0d8;
+    padding: 14px 22px; border-radius: 8px;
+    text-decoration: none; color: var(--black);
+    font-size: 0.9rem; font-weight: 500;
+    transition: all 0.25s;
+    min-width: 200px;
+  }
+  .social-link:hover { border-color: var(--red); color: var(--red); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(224,16,16,0.12); }
+  .social-icon {
+    width: 36px; height: 36px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; flex-shrink: 0;
+  }
+  .si-fb { background: #1877f2; color: white; }
+  .si-ig { background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af); color: white; }
+  .si-li { background: #0077b5; color: white; }
+  .si-tw { background: #000; color: white; }
+  .si-web { background: var(--red); color: white; }
+
+  /* ── CTA ── */
+  #cta {
+    background: linear-gradient(135deg, var(--red) 0%, var(--red-dark) 100%);
+    color: white; text-align: center; padding: 100px 8%;
+    position: relative; overflow: hidden;
+  }
+  #cta::before {
+    content: '';
+    position: absolute; top: -80px; left: 50%; transform: translateX(-50%);
+    width: 500px; height: 500px; border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+    pointer-events: none;
+  }
+  #cta h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 900;
+    margin-bottom: 16px; position: relative;
+  }
+  #cta p { font-size: 1.05rem; opacity: 0.85; max-width: 500px; margin: 0 auto 40px; line-height: 1.7; position: relative; }
+  .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; position: relative; }
+  .btn-white {
+    background: white; color: var(--red);
+    padding: 14px 36px; border-radius: 4px;
+    font-size: 0.95rem; font-weight: 700;
+    text-decoration: none;
+    transition: all 0.25s;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  }
+  .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.3); }
+  .btn-ghost {
+    border: 2px solid rgba(255,255,255,0.5); color: white;
+    padding: 14px 36px; border-radius: 4px;
+    font-size: 0.95rem; font-weight: 600;
+    text-decoration: none; transition: all 0.25s;
+  }
+  .btn-ghost:hover { border-color: white; background: rgba(255,255,255,0.1); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--black); color: rgba(255,255,255,0.5);
+    text-align: center; padding: 36px 8%;
+    font-size: 0.85rem; line-height: 1.7;
+  }
+  footer a { color: var(--red); text-decoration: none; }
+  footer strong { color: white; }
+
+  /* ── RESPONSIVE ── */
+  @media(max-width: 768px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .hero-deco { display: none; }
+    nav { padding: 0 5%; }
+    .nav-links { display: none; }
+    section { padding: 70px 6%; }
+    .hero-stats { gap: 28px; }
+    .impact-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0; transform: translateY(40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">
+    <div class="logo-icon">IAF</div>
+    <div>
+      InAmigos
+      <span>Uniting Minds For Change</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#impact">Impact</a></li>
+    <li><a href="#internships">Internships</a></li>
+    <li><a href="#team">Team</a></li>
+  </ul>
+  <a href="#cta" class="nav-cta">Join Us →</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <span class="hero-tag">Est. 23 September 2020 · Bilaspur, Chhattisgarh</span>
+  <h1 class="hero-title">
+    InAmigos<br><span class="accent">Foundation</span>
+  </h1>
+  <p class="hero-tagline">"Uniting Minds For Change"</p>
+  <p class="hero-desc">
+    A Central Government-licensed NGO registered under Section 8 of the Companies Act 2013,
+    dedicated to building a better society through education, food security, animal welfare, and women empowerment.
+  </p>
+  <div class="hero-btns">
+    <a href="#projects" class="btn-primary">Explore Our Work</a>
+    <a href="#cta" class="btn-outline">Volunteer / Intern</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num">20K+</div>
+      <div class="stat-label">Trees Planted</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">50K+</div>
+      <div class="stat-label">Meals Distributed</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">900+</div>
+      <div class="stat-label">Girls Empowered</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">1500+</div>
+      <div class="stat-label">Covid Relief Recipients</div>
+    </div>
+  </div>
+  <div class="hero-deco">
+    <div class="hero-deco-inner">Change<br>Starts<br>With Us</div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <span class="section-tag">Who We Are</span>
+  <h2 class="section-title">Tour To Our <span class="red">Foundation</span></h2>
+  <p class="section-sub">InAmigos Foundation is more than an NGO — it's a movement powered by passionate young minds committed to social change.</p>
+  <div class="about-grid reveal">
+    <div class="about-text">
+      <p><strong>InAmigos Foundation</strong> is a NGO licensed by the Central Government and registered under Section 8 of the Companies Act 2013, with its base at Bilaspur, Chhattisgarh. It was founded on 23rd September 2020 and started working for the betterment of society.</p>
+      <p>We operate across multiple verticals — from food drives and cleanliness campaigns to digital empowerment programs — always putting community first.</p>
+      <p>Our Corporate Identity Number is <strong>U85300CT2020NPL010641</strong>. We are 80G and 12A certified by the Commissioner of Income Tax, ensuring full financial transparency.</p>
+      <div class="about-badges">
+        <span class="badge red">ISO 9001:2015 Certified</span>
+        <span class="badge">NGO DARPAN – NITI Aayog</span>
+        <span class="badge">CSR-1 Registered</span>
+        <span class="badge">80G & 12A Certified</span>
+        <span class="badge">Trademarked Brand</span>
+        <span class="badge">MCA Registered</span>
+      </div>
+    </div>
+    <div class="about-visual">
+      <h3>Why Trust Us?</h3>
+      <ul class="trust-list">
+        <li>Licensed by the Central Government of India</li>
+        <li>80G and 12A certified — donations are tax-deductible</li>
+        <li>Monthly GST filing, annual auditing & full transparency</li>
+        <li>Donated ₹30,000 to PM CARES Fund in 2020</li>
+        <li>NGO DARPAN registered by NITI AAYOG</li>
+        <li>IAF ISO 9001:2015 globally recognized certification</li>
+        <li>Trademarked logo & brand name — government approved</li>
+        <li>Strong social media presence & volunteer network</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <span class="section-tag">What We Do</span>
+  <h2 class="section-title">Our <span class="red">Projects</span></h2>
+  <p class="section-sub">Five flagship initiatives driving real, measurable change across India.</p>
+  <div class="projects-grid reveal">
+    <div class="project-card">
+      <div class="project-icon">🌱</div>
+      <div class="project-name">Project Prakriti</div>
+      <div class="project-stat">20,000+ Trees Planted</div>
+      <p class="project-desc">A green initiative focused on environmental restoration through mass tree-planting drives across urban and rural regions.</p>
+    </div>
+    <div class="project-card">
+      <div class="project-icon">🍽️</div>
+      <div class="project-name">Project Seva</div>
+      <div class="project-stat">50,000+ Meals Distributed</div>
+      <p class="project-desc">Daily meal distribution in slum areas and orphanages, nutritional kits for pregnant women, and community kitchens during emergencies.</p>
+    </div>
+    <div class="project-card">
+      <div class="project-icon">💪</div>
+      <div class="project-name">Project Udaan</div>
+      <div class="project-stat">900+ Girls Empowered</div>
+      <p class="project-desc">Digital awareness campaigns empowering girls with knowledge, skills, and confidence to soar beyond barriers.</p>
+    </div>
+    <div class="project-card">
+      <div class="project-icon">🐾</div>
+      <div class="project-name">Project Jeev</div>
+      <div class="project-stat">50+ Animals Fed Daily</div>
+      <p class="project-desc">Dedicated animal welfare program providing food and care to street animals every single day.</p>
+    </div>
+    <div class="project-card">
+      <div class="project-icon">📚</div>
+      <div class="project-name">Project Bachpanshala</div>
+      <div class="project-stat">Rural Education Initiative</div>
+      <p class="project-desc">Bringing quality education to underprivileged children in rural areas, sponsoring books, uniforms, fees, and learning resources.</p>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT -->
+<section id="impact">
+  <span class="section-tag" style="background: rgba(255,255,255,0.1); color: var(--gold);">Our Numbers</span>
+  <h2 class="section-title">Impact That <span class="red">Speaks</span></h2>
+  <p class="section-sub">Every number represents a life touched, a difference made.</p>
+  <div class="impact-grid reveal">
+    <div class="impact-item">
+      <div class="impact-num">20K+</div>
+      <div class="impact-label">Trees Planted</div>
+    </div>
+    <div class="impact-item">
+      <div class="impact-num">50K+</div>
+      <div class="impact-label">Meals Given</div>
+    </div>
+    <div class="impact-item">
+      <div class="impact-num">900+</div>
+      <div class="impact-label">Girls Empowered</div>
+    </div>
+    <div class="impact-item">
+      <div class="impact-num">50+</div>
+      <div class="impact-label">Animals Fed Daily</div>
+    </div>
+    <div class="impact-item">
+      <div class="impact-num">1500+</div>
+      <div class="impact-label">Covid Relief</div>
+    </div>
+  </div>
+</section>
+
+<!-- COVID RELIEF -->
+<section id="covid">
+  <span class="section-tag">Pandemic Response</span>
+  <h2 class="section-title">COVID-19 <span class="red">Relief Work</span></h2>
+  <p class="covid-intro">When the pandemic hit, InAmigos Foundation stood up for the community. From distributing food to visiting orphanages, we were on the ground when it mattered most.</p>
+  <div class="covid-list reveal">
+    <div class="covid-item"><span class="arrow">➤</span> Distributed food to over 1500+ people during the COVID-19 lockdown</div>
+    <div class="covid-item"><span class="arrow">➤</span> Distributed stationery items to students in Kolkata</div>
+    <div class="covid-item"><span class="arrow">➤</span> Distributed clothes across many regions of Chhattisgarh</div>
+    <div class="covid-item"><span class="arrow">➤</span> Distributed masks and sanitizers in rural areas</div>
+    <div class="covid-item"><span class="arrow">➤</span> Provided food to street animals during the pandemic</div>
+    <div class="covid-item"><span class="arrow">➤</span> Visited orphanages to check on the health of elderly residents</div>
+  </div>
+</section>
+
+<!-- WHERE FUNDS ARE USED -->
+<section id="funds">
+  <span class="section-tag">Transparency</span>
+  <h2 class="section-title">Where Your <span class="red">Funds Go</span></h2>
+  <p class="section-sub">Every rupee is accounted for. Here's exactly how donations are utilized to create lasting impact.</p>
+  <div class="funds-grid reveal">
+    <div class="fund-card">
+      <h3>🍱 Food Drives</h3>
+      <p>Daily meal distribution in slum areas, nutritional kits for pregnant women, dry ration kits for low-income families, and "no food waste" campaigns.</p>
+    </div>
+    <div class="fund-card">
+      <h3>🤝 Social Work</h3>
+      <p>Sponsoring education for underprivileged children (books, uniforms, fees), free health camps, and vocational training for youth and women.</p>
+    </div>
+    <div class="fund-card">
+      <h3>🎁 Charity Drives</h3>
+      <p>Providing winter clothes and blankets to homeless individuals, supporting medical emergencies, and donating school supplies to students in need.</p>
+    </div>
+    <div class="fund-card">
+      <h3>🧹 Cleanliness Drives</h3>
+      <p>Street cleaning campaigns, installing dustbins in public areas, and promoting plastic-free zones by distributing cloth and jute bags.</p>
+    </div>
+    <div class="fund-card">
+      <h3>💻 Technical Costs</h3>
+      <p>Website hosting, domain costs, maintenance, updates, and online payment gateways for secure donation collection.</p>
+    </div>
+    <div class="fund-card">
+      <h3>📋 Compliance & Operations</h3>
+      <p>Monthly GST filing, annual auditing, legal filings, utility bills, stipends for volunteers and interns, and community outreach programs.</p>
+    </div>
+  </div>
+</section>
+
+<!-- INTERNSHIPS -->
+<section id="internships">
+  <span class="section-tag">Join The Team</span>
+  <h2 class="section-title">Our <span class="red">Internship Program</span></h2>
+  <div class="intern-header">
+    <p class="section-sub">InAmigos Foundation is recruiting volunteers for a 1–3 month internship program. Gain real-world experience while making a difference.</p>
+  </div>
+  <div class="roles-grid reveal">
+    <div class="role-tag">Field Volunteer</div>
+    <div class="role-tag">Community Teacher</div>
+    <div class="role-tag">Graphic Design</div>
+    <div class="role-tag">Social Entrepreneurship</div>
+    <div class="role-tag">Community Management</div>
+    <div class="role-tag">Social Work Volunteer</div>
+    <div class="role-tag">Content Writing</div>
+    <div class="role-tag">Fundraising Volunteer</div>
+  </div>
+
+  <div class="cert-section reveal">
+    <h3>Why Our Certificate Matters</h3>
+    <div class="cert-grid">
+      <div class="cert-item"><strong>Industry Recognition</strong>Association with a CSR-1 registered, ISO-certified, Central Government-licensed NGO — highly regarded by employers.</div>
+      <div class="cert-item"><strong>Global Acceptance</strong>Recognized by institutions and organizations worldwide, giving you a competitive edge on a global scale.</div>
+      <div class="cert-item"><strong>Future Opportunities</strong>Opens doors to advanced roles in NGOs, CSR projects, and social enterprises.</div>
+      <div class="cert-item"><strong>CSR Department Advantage</strong>Having experience with a reputed NGO gives you an edge during company selections for CSR roles.</div>
+      <div class="cert-item"><strong>Resume & Interview Impact</strong>Strengthens your resume and helps you stand out by showcasing relevant social work experience.</div>
+      <div class="cert-item"><strong>Career Credibility</strong>A certificate from an NGO that is CSR-1 registered, ISO 9001:2015 certified, and NGO Darpan-affiliated.</div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <span class="section-tag">Our People</span>
+  <h2 class="section-title">The <span class="red">Amigos</span></h2>
+  <p class="team-title-script">Amigo Of InAmigos</p>
+  <div class="team-grid reveal">
+    <div class="team-card">
+      <div class="team-avatar">G</div>
+      <div class="team-name">Govind Shukla</div>
+      <div class="team-role">Founder & CEO</div>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar">R</div>
+      <div class="team-name">Raman Swarnakar</div>
+      <div class="team-role">Chief Operating Officer</div>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar">K</div>
+      <div class="team-name">Khush Gupta</div>
+      <div class="team-role">Deputy Head, Core Member</div>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar">I</div>
+      <div class="team-name">Iniya Radhakrishnan</div>
+      <div class="team-role">Head of Internship Dept.</div>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar">S</div>
+      <div class="team-name">Shivani Tyagi</div>
+      <div class="team-role">Team Leader</div>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar">V</div>
+      <div class="team-name">Vignesh</div>
+      <div class="team-role">Junior Core Member</div>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar">M</div>
+      <div class="team-name">Manem Padmasri</div>
+      <div class="team-role">Junior Core Member</div>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar">S</div>
+      <div class="team-name">Shaik ShahiraBhanu</div>
+      <div class="team-role">Senior Core Member</div>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar">M</div>
+      <div class="team-name">Madhusudan</div>
+      <div class="team-role">CSR Coordinator</div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL MEDIA -->
+<section id="social">
+  <span class="section-tag">Connect With Us</span>
+  <h2 class="section-title">Social Media <span class="red">Presence</span></h2>
+  <p class="section-sub">Follow us on social media to stay updated on our campaigns, events, and impact stories.</p>
+  <div class="social-grid reveal">
+    <a href="https://www.facebook.com/InAmigos/" target="_blank" class="social-link">
+      <div class="social-icon si-fb">f</div>
+      Facebook — @InAmigos
+    </a>
+    <a href="https://www.instagram.com/inamigos/" target="_blank" class="social-link">
+      <div class="social-icon si-ig">📷</div>
+      Instagram — @inamigos
+    </a>
+    <a href="https://www.linkedin.com/company/inamigos-foundation/posts/?feedView=all" target="_blank" class="social-link">
+      <div class="social-icon si-li">in</div>
+      LinkedIn — InAmigos Foundation
+    </a>
+    <a href="https://x.com/inamigosf" target="_blank" class="social-link">
+      <div class="social-icon si-tw">𝕏</div>
+      X (Twitter) — @inamigosf
+    </a>
+    <a href="https://www.inamigosfoundation.org.in/" target="_blank" class="social-link">
+      <div class="social-icon si-web">🌐</div>
+      inamigosfoundation.org.in
+    </a>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <h2>Be Part of the Change</h2>
+  <p>Join the InAmigos family as a volunteer, intern, or donor and help us build a more just and compassionate India.</p>
+  <div class="cta-btns">
+    <a href="https://www.inamigosfoundation.org.in/" target="_blank" class="btn-white">Join / Volunteer →</a>
+    <a href="#projects" class="btn-ghost">See Our Work</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>InAmigos Foundation</strong> · Ward No. 5 Gram Post, Sipat Ujwal Nagar, Bilaspur, Chhattisgarh – 495555</p>
+  <p style="margin-top:8px;">CIN: U85300CT2020NPL010641 · PAN: AAFCI8183C · ISO 9001:2015 Certified · CSR-1 Registered</p>
+  <p style="margin-top:8px;"><a href="https://www.inamigosfoundation.org.in/">www.inamigosfoundation.org.in</a> &nbsp;|&nbsp; "Uniting Minds For Change"</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => observer.observe(el));
+
+  // Nav active link highlight on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--red)' : '';
+    });
+  });
+</script>
+</body>
+</html>
